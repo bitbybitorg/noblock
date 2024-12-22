@@ -1,20 +1,30 @@
 {
 	"name": "noblock",
-	"version": "1.0.0",
-	"main": "src/index.ts",
+	"version": "0.0.1",
+	"type": "module",
+	"main": "dist/index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon --exec ts-node src/index.ts",
+		"build": "tsc"
 	},
-	"keywords": [],
+	"keywords": [
+		"Adblocker",
+		"Blocker",
+		"NoBlock",
+		"Adblock Detection"
+	],
 	"author": "",
 	"license": "ISC",
 	"description": "",
 	"devDependencies": {
 		"nodemon": "^3.1.9",
+		"tailwindcss": "^3.4.17",
+		"ts-node": "^10.9.2",
 		"typescript": "^5.7.2"
 	},
 	"dependencies": {
-		"noblock": "file:",
+		"@types/react": "^19.0.2",
 		"react": "^19.0.0"
 	}
 }
