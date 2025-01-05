@@ -3,13 +3,15 @@
 	"version": "0.0.1",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
+	"types": "dist/index.d.mts",
+	"style": "dist/index.css",
 	"scripts": {
-		"rollup": "rollup -c --bundleConfigAsCjs",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "nodemon --exec npm run rollup",
-		"build": "tsc"
+		"build": "tsup",
+		"watch": "tsup --watch"
 	},
+	"files": [
+		"dist/**/*"
+	],
 	"keywords": [
 		"Adblocker",
 		"Blocker",
@@ -19,21 +21,21 @@
 	"author": "",
 	"license": "ISC",
 	"description": "",
-	"devDependencies": {
-		"@rollup/plugin-commonjs": "^28.0.2",
-		"@rollup/plugin-node-resolve": "^16.0.0",
-		"@rollup/plugin-terser": "^0.4.4",
-		"@rollup/plugin-typescript": "^12.1.2",
-		"@types/react": "^18.3.1",
-		"nodemon": "^3.1.9",
+	"peerDependencies": {
+		"autoprefixer": "^10.4.20",
 		"react": "^18.3.1",
-		"rollup": "^4.29.1",
-		"rollup-plugin-dts": "^6.1.1",
-		"rollup-plugin-peer-deps-external": "^2.2.4",
-		"rollup-plugin-postcss": "^4.0.2",
+		"react-dom": "^18.3.1"
+	},
+	"devDependencies": {
+		"@types/react": "^18.3.1",
+		"@types/react-dom": "^18.3.1",
+		"nodemon": "^3.1.9",
+		"postcss": "^8.4.49",
+		"react": "^18.3.1",
 		"tailwindcss": "^3.4.17",
 		"ts-node": "^10.9.2",
 		"tslib": "^2.8.1",
+		"tsup": "^8.3.5",
 		"typescript": "^5.7.2"
 	}
 }
