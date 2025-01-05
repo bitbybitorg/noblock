@@ -50,6 +50,47 @@ export const useDetect = () => {
 				return false; // Default assumption is no ad blocker unless error occurs
 			};
 
+			const detectAdblockByElement = () => {
+				const ad = document.createElement('div');
+				ad.id = 'ad';
+				ad.style.display = 'block';
+				document.body.appendChild(ad);
+
+				const isBlocked =
+					getComputedStyle(ad).display === 'none';
+				document.body.removeChild(ad);
+
+				return isBlocked;
+			};
+
+			const fetchBlockedFile = async () => {
+				let adBlockEnabled = false;
+				const googleAdUrl =
+					'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+				try {
+					await fetch(new Request(googleAdUrl)).catch(
+						(_) => (adBlockEnabled = true)
+					);
+				} catch (e) {
+					adBlockEnabled = true;
+				} finally {
+					console.log(
+						`AdBlock Enabled: ${adBlockEnabled}`
+					);
+					return adBlockEnabled;
+				}
+			};
+
+			if (await fetchBlockedFile()) {
+				setIsAdBlockerDetected(true);
+				return;
+			}
+
+			if (detectAdblockByElement()) {
+				setIsAdBlockerDetected(true);
+				return;
+			}
+
 			// Execute fallbacks in sequence
 			if (detectWithclassNameName()) {
 				setIsAdBlockerDetected(true);
@@ -88,6 +129,7 @@ export const BlockContainer = ({
 	reportMail,
 }: DetectProps) => {
 	const isAdBlockerDetected = useDetect();
+	console.log(isAdBlockerDetected);
 
 	if (isAdBlockerDetected) {
 		return !customContainer ? (
