@@ -66,7 +66,7 @@ export const useDetect = () => {
 
 const BlockContainer = ({
   children,
-  noStyle,
+  noStyle = false,
   colorTheme,
   customContainer,
   rootClassName,

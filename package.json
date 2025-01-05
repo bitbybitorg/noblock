@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@types/react": "^19.0.2",
-    "noblock": "file:",
     "react": "^19.0.0"
   }
 }
